@@ -14,6 +14,8 @@
 		3F9182842B28B32300030A58 /* Wordle_ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9182832B28B32300030A58 /* Wordle_ProjectTests.swift */; };
 		3F91828E2B28B32300030A58 /* Wordle_ProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F91828D2B28B32300030A58 /* Wordle_ProjectUITests.swift */; };
 		3F9182902B28B32300030A58 /* Wordle_ProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F91828F2B28B32300030A58 /* Wordle_ProjectUITestsLaunchTests.swift */; };
+		3F91829F2B28B50500030A58 /* WordleGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F91829E2B28B50500030A58 /* WordleGameModel.swift */; };
+		3F9182A12B28BBBF00030A58 /* WordleGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9182A02B28BBBF00030A58 /* WordleGameViewModel.swift */; };
 		3FB53D552B28B4CB006F2822 /* AnswerTale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB53D542B28B4CB006F2822 /* AnswerTale.swift */; };
 		3FB53D572B28BC31006F2822 /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB53D562B28BC31006F2822 /* KeyboardButton.swift */; };
 		3FB53D592B28BEF8006F2822 /* ResetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB53D582B28BEF8006F2822 /* ResetButton.swift */; };
@@ -48,10 +50,13 @@
 		3F9182892B28B32300030A58 /* Wordle_ProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Wordle_ProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F91828D2B28B32300030A58 /* Wordle_ProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle_ProjectUITests.swift; sourceTree = "<group>"; };
 		3F91828F2B28B32300030A58 /* Wordle_ProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle_ProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3F91829E2B28B50500030A58 /* WordleGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleGameModel.swift; sourceTree = "<group>"; };
+		3F9182A02B28BBBF00030A58 /* WordleGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleGameViewModel.swift; sourceTree = "<group>"; };
 		3FB53D542B28B4CB006F2822 /* AnswerTale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerTale.swift; sourceTree = "<group>"; };
 		3FB53D562B28BC31006F2822 /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		3FB53D582B28BEF8006F2822 /* ResetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetButton.swift; sourceTree = "<group>"; };
 		3FB53D5A2B28BF24006F2822 /* PlayAgainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayAgainButton.swift; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +111,8 @@
 				3F9182742B28B32200030A58 /* ContentView.swift */,
 				3F9182762B28B32300030A58 /* Assets.xcassets */,
 				3F9182782B28B32300030A58 /* Preview Content */,
+				3F91829E2B28B50500030A58 /* WordleGameModel.swift */,
+				3F9182A02B28BBBF00030A58 /* WordleGameViewModel.swift */,
 				3FB53D542B28B4CB006F2822 /* AnswerTale.swift */,
 				3FB53D562B28BC31006F2822 /* KeyboardButton.swift */,
 				3FB53D5A2B28BF24006F2822 /* PlayAgainButton.swift */,
@@ -275,6 +282,8 @@
 				3FB53D552B28B4CB006F2822 /* AnswerTale.swift in Sources */,
 				3FB53D5B2B28BF24006F2822 /* PlayAgainButton.swift in Sources */,
 				3F9182732B28B32200030A58 /* Wordle_ProjectApp.swift in Sources */,
+				3F91829F2B28B50500030A58 /* WordleGameModel.swift in Sources */,
+				3F9182A12B28BBBF00030A58 /* WordleGameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
