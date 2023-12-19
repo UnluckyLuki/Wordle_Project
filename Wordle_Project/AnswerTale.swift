@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct AnswerTale: View {
+    var letter : WordleGameModel<String>.Letter
+    init(_ letter: WordleGameModel<String>.Letter) {
+        self.letter = letter
+    }
     var body: some View {
-        
-        Text("A")
+        Text(letter.content)
             .frame(width: 40, height: 40)
             .font(.system(size: 50))
             .padding(12)
@@ -19,6 +22,3 @@ struct AnswerTale: View {
     }
 }
 
-#Preview {
-    AnswerTale()
-}
