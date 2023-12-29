@@ -12,12 +12,15 @@ struct RowDisplay: View {
     init(_ row: WordleGameModel<String>.Row) {
         self.row = row
     }
+
     var body: some View {
         HStack{
             ForEach(row.Letters){
                 letter in AnswerTale(letter)
             }
         }.padding(4)
+        
     }
 }
+
 

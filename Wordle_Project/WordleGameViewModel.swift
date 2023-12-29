@@ -55,6 +55,9 @@ class WordleGameViewModel: ObservableObject {
         model.deleteLetter()
     }
     
+    var wrongLetters: Array<String>{
+        return model.wrongLetters
+    }
     func changeLetter(input: String){
         model.changeLetter(input: input)
         if model.answer.count == model.iterator{
