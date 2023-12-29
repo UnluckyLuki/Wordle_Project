@@ -12,6 +12,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("Słowle").font(.largeTitle)
+            Text("Proba: \(viewModel.attemps+1)")
             GuessDisplay
             Spacer()
             KeyboardDisplay(viewModel: viewModel)
