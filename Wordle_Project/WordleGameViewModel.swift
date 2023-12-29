@@ -58,6 +58,11 @@ class WordleGameViewModel: ObservableObject {
     var wrongLetters: Array<String>{
         return model.wrongLetters
     }
+    
+    var gameOver: Bool{
+        return model.gameOver
+    }
+    
     func changeLetter(input: String){
         model.changeLetter(input: input)
         if model.answer.count == model.iterator{

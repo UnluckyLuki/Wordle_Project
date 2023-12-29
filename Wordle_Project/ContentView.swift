@@ -14,6 +14,8 @@ struct ContentView: View {
             Text("Słowle").font(.largeTitle)
             Text("Proba: \(viewModel.attemps+1)")
             GuessDisplay
+            Text(viewModel.wordGuessed ? "Brawo" : "")
+            Text(viewModel.gameOver ? "Nie udalo ci sie, poprawna odpowiedz: \(viewModel.answer.joined())" : "")
             Spacer()
             KeyboardDisplay(viewModel: viewModel)
             Spacer()

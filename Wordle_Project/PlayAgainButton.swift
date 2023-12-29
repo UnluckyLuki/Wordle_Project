@@ -11,14 +11,18 @@ struct PlayAgainButton: View {
     var isGuessed: Bool = false
     @ObservedObject var viewModel: WordleGameViewModel
     var body: some View {
-        Button("Zagraj ponownie"){
-            viewModel.playAgain()
+        Button(viewModel.answer.count == 6 ? "Zagraj ponownie" : "Nastepne slowo"){
+            if viewModel.answer.count == 6 {
+                viewModel.playAgain()
+            } else {
+                viewModel.nextWord()
+            }
         }
-//        .disabled(isGuessed)
+        .disabled(!viewModel.wordGuessed)
         .padding(2)
         .frame(width: 150, height: 40)
         //.tint(.blue)
-        .border(isGuessed ? Color.gray : Color.blue, width: 2)
+        .border(!viewModel.wordGuessed ? Color.gray : Color.blue, width: 2)
         .cornerRadius(5)
 
     }

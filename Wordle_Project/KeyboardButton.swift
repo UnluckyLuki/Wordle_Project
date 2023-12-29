@@ -13,7 +13,7 @@ struct KeyboardButton: View {
     var body: some View {
         Button(text){
             viewModel.changeLetter(input: text)
-        }.disabled(viewModel.wrongLetters.contains(text))
+        }.disabled(viewModel.wrongLetters.contains(text) || viewModel.gameOver || viewModel.wordGuessed)
             .frame(width: 15, height: 15)
             .font(.system(size: 15))
             .padding(8)
