@@ -11,14 +11,14 @@ import SwiftUI
 struct WordleGameModel<LetterContent> where LetterContent: Equatable{
     private(set) var rows: Array<Row>
     private(set) var word: Array<Letter>
-    private(set) var anwser: Array<LetterContent>
+    private(set) var answer: Array<LetterContent>
     public var iterator: Int
     public var attempts: Int
     
     init(numberOfLetters: Int, anwserContentFactory: (Int)->
     LetterContent){
         word = []
-        anwser = []
+        answer = []
         rows = []
         attempts = 0
         iterator = 0
@@ -26,7 +26,7 @@ struct WordleGameModel<LetterContent> where LetterContent: Equatable{
             let wordContent = ""
             let anwserContent = anwserContentFactory(index)
             word.append(Letter(id: index, content: wordContent as! LetterContent))
-            anwser.append(anwserContent)
+            answer.append(anwserContent)
         }
         rows.append(Row(id: attempts, Letters: word))
     }
@@ -38,26 +38,27 @@ struct WordleGameModel<LetterContent> where LetterContent: Equatable{
     
     
     mutating func checkAnwser() {
-        for i in 0..<anwser.count{
-            if anwser[i] == word[i].content{
-                word[i].isCorrect = true
+        for i in 0..<answer.count{
+            if answer[i] == rows[attempts].Letters[i].content{
+                rows[attempts].Letters[i].isCorrect = true
             } else {
                 for j in 0..<word.count{
-                    if anwser.contains(word[j].content){
-                        word[j].isOccurs = true
+                    if answer.contains(rows[attempts].Letters[j].content){
+                        rows[attempts].Letters[j].isOccurs = true
                     } else {
-                        word[j].isWrong = true
+                        rows[attempts].Letters[j].isWrong = true
                     }
                 }
             }
         }
         attempts = attempts + 1
         word = []
-        for index in 0..<anwser.count{
+        for index in 0..<answer.count{
             let wordContent = ""
             word.append(Letter(id: index, content: wordContent as! LetterContent))
         }
         rows.append(Row(id: attempts, Letters: word))
+
     }
     
     struct Letter : Equatable, Identifiable{

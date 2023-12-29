@@ -18,8 +18,9 @@ struct KeyboardButton: View {
             .frame(width: 15, height: 15)
             .font(.system(size: 15))
             .padding(8)
-            .border(isBlocked ? .gray : .black, width: 2)
-            .background(.white).cornerRadius(5).tint(.black)
+            .border(isBlocked ? Color.gray : Color.black, width: 2)
+            .background(Color.white).cornerRadius(5)
+            //.tint(Color.black)
     }
 }
 

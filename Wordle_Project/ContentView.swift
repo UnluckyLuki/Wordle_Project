@@ -14,7 +14,7 @@ struct ContentView: View {
             Text("Słowle").font(.largeTitle)
             GuessDisplay
             Spacer()
-            KeyboardDisplay
+            KeyboardDisplay(viewModel: viewModel)
             Spacer()
             Buttons
             Spacer()
@@ -71,52 +71,19 @@ struct ContentView: View {
 //            }.padding(4)
         }.frame(maxHeight:400)
     }
-    var KeyboardDisplay: some View{
-        VStack{
-            HStack{
-                KeyboardButton(viewModel: viewModel, text:"Q", isBlocked: false)
-                KeyboardButton(viewModel: viewModel, text:"W", isBlocked: false)
-//                KeyboardButton(text:"E", isBlocked: false)
-//                KeyboardButton(text:"R", isBlocked: false)
-//                KeyboardButton(text:"T", isBlocked: false)
-//                KeyboardButton(text:"Y", isBlocked: false)
-//                KeyboardButton(text:"U", isBlocked: false)
-//                KeyboardButton(text:"I", isBlocked: false)
-//                KeyboardButton(text:"O", isBlocked: false)
-//                KeyboardButton(text:"P", isBlocked: false)
-            }
-            HStack{
-//                KeyboardButton(text:"A", isBlocked: false)
-//                KeyboardButton(text:"S", isBlocked: false)
-//                KeyboardButton(text:"D", isBlocked: false)
-//                KeyboardButton(text:"F", isBlocked: false)
-//                KeyboardButton(text:"G", isBlocked: false)
-//                KeyboardButton(text:"H", isBlocked: false)
-//                KeyboardButton(text:"J", isBlocked: false)
-//                KeyboardButton(text:"K", isBlocked: false)
-//                KeyboardButton(text:"L", isBlocked: false)
-            }
-            HStack{
-//                KeyboardButton(text:"Z", isBlocked: false)
-//                KeyboardButton(text:"X", isBlocked: false)
-//                KeyboardButton(text:"C", isBlocked: false)
-//                KeyboardButton(text:"V", isBlocked: false)
-//                KeyboardButton(text:"B", isBlocked: false)
-//                KeyboardButton(text:"N", isBlocked: false)
-//                KeyboardButton(text:"M", isBlocked: false)
-
-            }
-        }
-    }
+    
     var Buttons : some View{
         HStack{
-            ResetButton()
+            ResetButton(viewModel: viewModel)
             Spacer()
             PlayAgainButton(isGuessed: true)
         }
     }
 }
 
-#Preview {
-    ContentView(viewModel: WordleGameViewModel())
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView(viewModel: WordleGameViewModel())
 }
+}
+

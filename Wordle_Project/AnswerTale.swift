@@ -18,7 +18,7 @@ struct AnswerTale: View {
             .font(.system(size: 50))
             .padding(12)
             .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 3)
-            .background(.gray).cornerRadius(5)
+            .background(letter.isCorrect ? Color.green : letter.isOccurs ? Color.yellow : letter.isWrong ? Color.red : Color.gray).cornerRadius(5)
     }
 }
 

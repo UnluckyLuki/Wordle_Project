@@ -8,17 +8,14 @@
 import SwiftUI
 
 struct ResetButton: View {
+    @ObservedObject var viewModel: WordleGameViewModel
     var body: some View {
         Button("Reset"){
             
         }.frame(width: 100, height: 40)
-            .tint(.blue)
-            .border(.blue, width: 2)
+            //.tint(.blue)
+            .border(Color.blue, width: 2)
             .cornerRadius(5)
 
     }
-}
-
-#Preview {
-    ResetButton()
 }

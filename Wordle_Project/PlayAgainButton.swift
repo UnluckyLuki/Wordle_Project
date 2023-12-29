@@ -15,13 +15,9 @@ struct PlayAgainButton: View {
         }.disabled(isGuessed)
         .padding(2)
         .frame(width: 150, height: 40)
-        .tint(.blue)
-        .border(isGuessed ? .gray : .blue, width: 2)
+        //.tint(.blue)
+        .border(isGuessed ? Color.gray : Color.blue, width: 2)
         .cornerRadius(5)
 
     }
-}
-
-#Preview {
-    PlayAgainButton()
 }
