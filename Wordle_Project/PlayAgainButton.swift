@@ -9,10 +9,12 @@ import SwiftUI
 
 struct PlayAgainButton: View {
     var isGuessed: Bool = false
+    @ObservedObject var viewModel: WordleGameViewModel
     var body: some View {
         Button("Zagraj ponownie"){
-            
-        }.disabled(isGuessed)
+            viewModel.playAgain()
+        }
+//        .disabled(isGuessed)
         .padding(2)
         .frame(width: 150, height: 40)
         //.tint(.blue)

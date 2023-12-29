@@ -10,7 +10,16 @@ import SwiftUI
 
 class WordleGameViewModel: ObservableObject {
     
-    private static var word = ["A", "P", "P", "L", "E"]
+    private var words = [
+        ["T", "A", "S", "K"],
+        ["W", "O", "R", "D"],
+        ["G", "A", "M", "E", "S"],
+        ["B", "R", "A", "I", "N"],
+        ["L", "E", "T", "T", "E", "R"],
+        ["E", "X", "O", "T", "I", "C"]
+    ]
+    
+    private static var word = ["T", "A", "S", "K"]
     
     @Published private var model: WordleGameModel<String> = createGame()
     
@@ -37,12 +46,35 @@ class WordleGameViewModel: ObservableObject {
     var rows: Array<WordleGameModel<String>.Row>{
         return model.rows
     }
+    
+    var wordGuessed: Bool{
+        return model.wordGuessed
+    }
 
+    func deleteLetter(){
+        model.deleteLetter()
+    }
+    
     func changeLetter(input: String){
         model.changeLetter(input: input)
         if model.answer.count == model.iterator{
             model.checkAnwser()
             model.iterator = 0
         }
+    }
+    
+    func nextWord(){
+        WordleGameViewModel.word = words.filter{$0.count == WordleGameViewModel.word.count + 1}.randomElement()!
+        model = WordleGameViewModel.createGame()
+    }
+    
+    func reset(){
+        WordleGameViewModel.word = words.filter{$0.count == WordleGameViewModel.word.count}.randomElement()!
+        model = WordleGameViewModel.createGame()
+    }
+    
+    func playAgain(){
+        WordleGameViewModel.word = words.filter{$0.count == 4}.randomElement()!
+        model = WordleGameViewModel.createGame()
     }
 }

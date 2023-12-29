@@ -20,6 +20,7 @@ struct ContentView: View {
             Spacer()
         }
         .padding()
+        .gesture(swipe)
     }
     
 //    var RowDisplay : some View{
@@ -31,6 +32,15 @@ struct ContentView: View {
 //    }
     
     
+    
+    var swipe: some Gesture{
+        DragGesture(minimumDistance: 0, coordinateSpace: .local)
+            .onEnded({ value in
+                if value.translation.width < 0{
+                    viewModel.deleteLetter()
+                }
+            })
+    }
     
     
     var GuessDisplay: some View{
@@ -76,14 +86,14 @@ struct ContentView: View {
         HStack{
             ResetButton(viewModel: viewModel)
             Spacer()
-            PlayAgainButton(isGuessed: true)
+            PlayAgainButton(isGuessed: true, viewModel: viewModel)
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(viewModel: WordleGameViewModel())
-}
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView(viewModel: WordleGameViewModel())
+//}
+//}
 

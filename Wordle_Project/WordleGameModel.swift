@@ -14,14 +14,15 @@ struct WordleGameModel<LetterContent> where LetterContent: Equatable{
     private(set) var answer: Array<LetterContent>
     public var iterator: Int
     public var attempts: Int
+    public var wordGuessed: Bool
     
-    init(numberOfLetters: Int, anwserContentFactory: (Int)->
-    LetterContent){
+    init(numberOfLetters: Int, anwserContentFactory: (Int)-> LetterContent){
         word = []
         answer = []
         rows = []
         attempts = 0
         iterator = 0
+        wordGuessed = false
         for index in 0..<numberOfLetters{
             let wordContent = ""
             let anwserContent = anwserContentFactory(index)
@@ -36,6 +37,12 @@ struct WordleGameModel<LetterContent> where LetterContent: Equatable{
         iterator = iterator + 1
     }
     
+    mutating func deleteLetter(){
+        if iterator != 0 {
+            rows[attempts].Letters[iterator - 1].content = "" as! LetterContent
+            iterator = iterator - 1
+        }
+    }
     
     mutating func checkAnwser() {
         for i in 0..<answer.count{
@@ -51,14 +58,20 @@ struct WordleGameModel<LetterContent> where LetterContent: Equatable{
                 }
             }
         }
-        attempts = attempts + 1
-        word = []
-        for index in 0..<answer.count{
-            let wordContent = ""
-            word.append(Letter(id: index, content: wordContent as! LetterContent))
+        
+        let allCorrect = rows[attempts].Letters.allSatisfy{$0.isCorrect}
+        
+        if allCorrect{
+            wordGuessed = true
+        } else{
+            attempts = attempts + 1
+            word = []
+            for index in 0..<answer.count{
+                let wordContent = ""
+                word.append(Letter(id: index, content: wordContent as! LetterContent))
+            }
+            rows.append(Row(id: attempts, Letters: word))
         }
-        rows.append(Row(id: attempts, Letters: word))
-
     }
     
     struct Letter : Equatable, Identifiable{
