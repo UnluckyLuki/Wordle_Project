@@ -10,7 +10,7 @@ import SwiftUI
 
 struct WordleGameModel<LetterContent> where LetterContent: Equatable{
     private(set) var rows: Array<Row>
-    private(set) var word: Array<Letter>
+    private(set) var row: Array<Letter>
     private(set) var answer: Array<LetterContent>
     public var iterator: Int
     public var attempts: Int
@@ -19,7 +19,7 @@ struct WordleGameModel<LetterContent> where LetterContent: Equatable{
     private(set) var wrongLetters: Array<LetterContent>
     init(numberOfLetters: Int, anwserContentFactory: (Int)->
     LetterContent){
-        word = []
+        row = []
         answer = []
         rows = []
         wrongLetters = []
@@ -30,10 +30,10 @@ struct WordleGameModel<LetterContent> where LetterContent: Equatable{
         for index in 0..<numberOfLetters{
             let wordContent = ""
             let anwserContent = anwserContentFactory(index)
-            word.append(Letter(id: index, content: wordContent as! LetterContent))
+            row.append(Letter(id: index, content: wordContent as! LetterContent))
             answer.append(anwserContent)
         }
-        rows.append(Row(id: attempts, Letters: word))
+        rows.append(Row(id: attempts, Letters: row))
     }
     
     mutating func changeLetter(input: String) {
@@ -49,19 +49,16 @@ struct WordleGameModel<LetterContent> where LetterContent: Equatable{
     }
     
     mutating func checkAnwser() {
+
         for i in 0..<answer.count{
             if answer[i] == rows[attempts].Letters[i].content{
                 rows[attempts].Letters[i].isCorrect = true
-            } else {
-                for j in 0..<word.count{
-                    if answer.contains(rows[attempts].Letters[j].content){
-                        rows[attempts].Letters[j].isOccurs = true
-                    } else {
-                        rows[attempts].Letters[j].isWrong = true
-                        if(!wrongLetters.contains(rows[attempts].Letters[j].content)){
-                            wrongLetters.append(rows[attempts].Letters[j].content)
-                        }
-                    }
+            } else if answer.contains(rows[attempts].Letters[i].content){
+                rows[attempts].Letters[i].isOccurs = true
+            } else{
+                rows[attempts].Letters[i].isWrong = true
+                if(!wrongLetters.contains(rows[attempts].Letters[i].content)){
+                    wrongLetters.append(rows[attempts].Letters[i].content)
                 }
             }
         }
@@ -76,12 +73,12 @@ struct WordleGameModel<LetterContent> where LetterContent: Equatable{
             }
             if !gameOver{
                 attempts = attempts + 1
-                word = []
+                row = []
                 for index in 0..<answer.count{
                     let wordContent = ""
-                    word.append(Letter(id: index, content: wordContent as! LetterContent))
+                    row.append(Letter(id: index, content: wordContent as! LetterContent))
                 }
-                rows.append(Row(id: attempts, Letters: word))
+                rows.append(Row(id: attempts, Letters: row))
             }
         }
     }
