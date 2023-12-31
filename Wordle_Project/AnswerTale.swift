@@ -16,16 +16,15 @@ struct AnswerTale: View {
         RoundedRectangle(cornerRadius: 10)
             .fill(letter.isCorrect ? Color.green : letter.isOccurs ? Color.yellow : letter.isWrong ? Color.red : Color.gray)
             .frame(width: 70, height: 70)
+            .padding(10)
             .rotation3DEffect(
-                .degrees(letter.isWrong ? 0 : letter.isOccurs ? 0 : letter.isCorrect ? 0 : 180),
+                .degrees(letter.isWrong || letter.isOccurs || letter.isCorrect ? 0 : 180),
                 axis: (x: 0.0, y: 1.0, z: 0.0)
             )
-            .animation(Animation.easeInOut)
-            .padding(10)
+            .animation(Animation.default.delay(Double(letter.id)/4))
             .overlay(
                 Text(letter.content)
                 .font(.system(size: 50))
-
             )
 
     }

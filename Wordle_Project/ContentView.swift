@@ -10,30 +10,40 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var viewModel: WordleGameViewModel
     var body: some View {
-        VStack {
+        GeometryReader{ geometry in
+            VStack {
+                TopText
+                GuessDisplay
+                    .frame(height: geometry.size.height * 0.55, alignment: .top)
+                Spacer()
+                ScoreText
+                Spacer()
+                KeyboardDisplay(viewModel: viewModel)
+                Buttons
+            }
+            .padding()
+            .gesture(swipe)
+        }
+    }
+
+    var TopText: some View{
+        VStack{
             Text("Słowle")
                 .font(.largeTitle)
                 .foregroundColor(Color.blue)
             Text("Proba: \(viewModel.attemps+1)")
                 .font(.title2)
                 .foregroundColor(Color.blue)
-            GuessDisplay
-            Text(viewModel.wordGuessed ? "Brawo" : "")
-                .font(.title2)
-                .foregroundColor(Color.green)
-            Text(viewModel.gameOver ? "Nie udalo ci sie, poprawna odpowiedz: \(viewModel.answer.joined())" : "")
-                .font(.title2)
-                .foregroundColor(Color.red)
-            Spacer()
-            KeyboardDisplay(viewModel: viewModel)
-            Spacer()
-            Buttons
-            Spacer()
         }
-        .padding()
-        .gesture(swipe)
     }
-
+    
+    var ScoreText: some View{
+        VStack{
+            Text(viewModel.wordGuessed ? "Brawo" : viewModel.gameOver ? "Nie udalo ci sie, poprawna odpowiedz: \(viewModel.answer.joined())" : "")
+                .font(.title2)
+                .foregroundColor(viewModel.wordGuessed ? Color.green : Color.red)
+        }
+    }
     
     var swipe: some Gesture{
         DragGesture(minimumDistance: 0, coordinateSpace: .local)
@@ -46,16 +56,14 @@ struct ContentView: View {
     
     
     var GuessDisplay: some View{
-        GeometryReader{
-            geometry in
             LazyVGrid(columns: [GridItem(spacing: 0)], spacing: 0, content: {
                 ForEach(viewModel.rows){row in
                     RowDisplay(row)
-                        .aspectRatio(2/3, contentMode: .fit)
+                        .aspectRatio(contentMode: .fit)
                         .padding(4)
                 }
             })
-        }
+        
     }
     
     var Buttons : some View{
