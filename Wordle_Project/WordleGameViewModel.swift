@@ -37,7 +37,7 @@ class WordleGameViewModel: ObservableObject {
     }
     
     var row : Array<WordleGameModel<String>.Letter>{
-        return model.word
+        return model.row
     }
     var attemps: Int {
         return model.attempts
@@ -50,10 +50,6 @@ class WordleGameViewModel: ObservableObject {
     var wordGuessed: Bool{
         return model.wordGuessed
     }
-
-    func deleteLetter(){
-        model.deleteLetter()
-    }
     
     var wrongLetters: Array<String>{
         return model.wrongLetters
@@ -61,6 +57,10 @@ class WordleGameViewModel: ObservableObject {
     
     var gameOver: Bool{
         return model.gameOver
+    }
+
+    func deleteLetter(){
+        model.deleteLetter()
     }
     
     func changeLetter(input: String){

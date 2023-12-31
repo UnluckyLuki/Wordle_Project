@@ -11,11 +11,19 @@ struct ContentView: View {
     @ObservedObject var viewModel: WordleGameViewModel
     var body: some View {
         VStack {
-            Text("Słowle").font(.largeTitle)
+            Text("Słowle")
+                .font(.largeTitle)
+                .foregroundColor(Color.blue)
             Text("Proba: \(viewModel.attemps+1)")
+                .font(.title2)
+                .foregroundColor(Color.blue)
             GuessDisplay
             Text(viewModel.wordGuessed ? "Brawo" : "")
+                .font(.title2)
+                .foregroundColor(Color.green)
             Text(viewModel.gameOver ? "Nie udalo ci sie, poprawna odpowiedz: \(viewModel.answer.joined())" : "")
+                .font(.title2)
+                .foregroundColor(Color.red)
             Spacer()
             KeyboardDisplay(viewModel: viewModel)
             Spacer()
@@ -25,16 +33,7 @@ struct ContentView: View {
         .padding()
         .gesture(swipe)
     }
-    
-//    var RowDisplay : some View{
-//        HStack{
-//            ForEach(viewModel.row){
-//                letter in AnswerTale(letter)
-//            }
-//        }.padding(4)
-//    }
-    
-    
+
     
     var swipe: some Gesture{
         DragGesture(minimumDistance: 0, coordinateSpace: .local)
@@ -47,43 +46,16 @@ struct ContentView: View {
     
     
     var GuessDisplay: some View{
-        VStack{
-            ForEach(viewModel.rows){row in
-                RowDisplay(row)
-
-            }
-//            ForEach(0..<viewModel.attemps, id: \.self){_ in
-//                RowDisplay
-//            }
-//            HStack{
-//                AnswerTale()
-//                AnswerTale()
-//                AnswerTale()
-//                AnswerTale()
-//                AnswerTale()
-//            }.padding(4)
-//            HStack{
-//                AnswerTale()
-//                AnswerTale()
-//                AnswerTale()
-//                AnswerTale()
-//                AnswerTale()
-//            }.padding(4)
-//            HStack{
-//                AnswerTale()
-//                AnswerTale()
-//                AnswerTale()
-//                AnswerTale()
-//                AnswerTale()
-//            }.padding(4)
-//            HStack{
-//                AnswerTale()
-//                AnswerTale()
-//                AnswerTale()
-//                AnswerTale()
-//                AnswerTale()
-//            }.padding(4)
-        }.frame(maxHeight:400)
+        GeometryReader{
+            geometry in
+            LazyVGrid(columns: [GridItem(spacing: 0)], spacing: 0, content: {
+                ForEach(viewModel.rows){row in
+                    RowDisplay(row)
+                        .aspectRatio(2/3, contentMode: .fit)
+                        .padding(4)
+                }
+            })
+        }
     }
     
     var Buttons : some View{
