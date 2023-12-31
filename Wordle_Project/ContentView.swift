@@ -50,6 +50,7 @@ struct ContentView: View {
         VStack{
             ForEach(viewModel.rows){row in
                 RowDisplay(row)
+
             }
 //            ForEach(0..<viewModel.attemps, id: \.self){_ in
 //                RowDisplay

@@ -14,11 +14,12 @@ struct KeyboardButton: View {
         Button(text){
             viewModel.changeLetter(input: text)
         }.disabled(viewModel.wrongLetters.contains(text) || viewModel.gameOver || viewModel.wordGuessed)
-            .frame(width: 15, height: 15)
-            .font(.system(size: 15))
-            .padding(8)
-            .border(viewModel.wrongLetters.contains(text) ? Color.gray : Color.black, width: 2)
-            .background(Color.white).cornerRadius(5)
+            .frame(width: 20, height: 20)
+            .font(.system(size: 18))
+            .padding(5)
+            .border(viewModel.wrongLetters.contains(text) ? Color.gray : Color.black, width: 2).cornerRadius(5)
+            .background(Color.white)
+
             //.tint(Color.black)
     }
 }
