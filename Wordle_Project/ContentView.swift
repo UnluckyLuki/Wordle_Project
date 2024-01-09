@@ -21,7 +21,7 @@ struct ContentView: View {
                 KeyboardDisplay(viewModel: viewModel)
                 Buttons
             }
-            .padding()
+            .padding(5)
             .gesture(swipe)
         }
     }
@@ -60,7 +60,6 @@ struct ContentView: View {
                 ForEach(viewModel.rows){row in
                     RowDisplay(row)
                         .aspectRatio(contentMode: .fit)
-                        .padding(4)
                 }
             })
         
@@ -70,7 +69,7 @@ struct ContentView: View {
         HStack{
             ResetButton(viewModel: viewModel)
             Spacer()
-            PlayAgainButton(isGuessed: true, viewModel: viewModel)
+            PlayAgainButton(viewModel: viewModel)
         }
     }
 }
